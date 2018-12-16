@@ -1,0 +1,10 @@
+\section{Hyperparameter Tuning}
+
+\begin{itemize}[wide, labelwidth=!, labelindent=0pt]
+\itemsep0em 
+    \item Most important to tune is $\alpha$. Then mini-batch size, number of hidden units, and $\beta$. Then number of layers and learning decay rate. We almost never tune Adam optimizer parameters.
+    \item Try random values of parameters -- don't use a grid. Hard to know which parameters will be most important for your problem and what their values should be.
+    \item Can use a coarse to fine sampling scheme. When you find some hyperparameters values that give you a better performance, zoom into a smaller region around these values and sample more densely within this space. 
+    \item Make sure to choose an appropriate scale to sample parameters from. The sensitivity of results to mall changes in parameter value is not uniform over the interval of possible values. Ex: $\alpha$ should be sampled on a logarithmic scale of $10^\text{rand\_num}$ for $[10^{-4}, 1]$. For exponentially weighted averages $\beta$ use $1 - 10^\text{rand\_num}$.
+    \item Like a panda, you can babysit your model while training if you have a lot of data and not a lot of computational resources. Or like caviar, you can train many models in parallel (preferred). \vspace*{-\baselineskip}
+\end{itemize}

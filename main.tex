@@ -1,0 +1,81 @@
+\documentclass[landscape]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{import}
+\usepackage{calc}
+\usepackage{wrapfig}
+\usepackage{ifthen}
+\usepackage{enumitem}
+\usepackage[landscape]{geometry}
+\usepackage{hyperref}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{color}
+
+\geometry{top=.1in,left=.1in,right=.1in,bottom=.1in}
+\pagestyle{empty} 
+\newcommand*{\sectiondir}{content/}
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  breaklines=true,
+  tabsize=2,
+  literate={\ \ }{{\ }}1,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {0.5ex}%
+                                {0.5ex}%
+                                {\normalfont\small\bfseries\color{Thistle}}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {0.5ex}%
+                                {0.5ex}%
+                                {\normalfont\footnotesize\bfseries\color{Periwinkle}}}
+\makeatother
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+\begin{document}
+\raggedright
+\begin{scriptsize}
+\begin{multicols*}{4}
+
+\setlength{\premulticols}{0.5pt}
+\setlength{\postmulticols}{0.5pt}
+\setlength{\multicolsep}{0.5pt}
+\setlength{\columnsep}{0.5pt}
+
+\import{\sectiondir}{notation.tex}
+\import{\sectiondir}{c1m1_introduction_to_deep_learning.tex}
+\import{\sectiondir}{c1m2_basics_of_neural_network_programming.tex}
+\import{\sectiondir}{c1m3_one_hidden_layer_neural_network.tex}
+\import{\sectiondir}{c1m4_deep_neural_networks.tex}
+\import{\sectiondir}{c2m1a_setting_up_your_ml_application.tex}
+\import{\sectiondir}{c2m1b_regularizing_your_neural_network.tex}
+\import{\sectiondir}{c2m1c_setting_up_your_optimization_problem.tex}
+\import{\sectiondir}{c2m2_optimization_algorithms.tex}
+\import{\sectiondir}{c2m3a_hyperparameter_tuning.tex}
+\import{\sectiondir}{c2m3b_batch_normalization.tex}
+\import{\sectiondir}{c2m3c_multiclass_classification.tex}
+%\import{\sectiondir}{c2m3d_programming_frameworks.tex}
+\import{\sectiondir}{c3m1a_introduction_to_ml_strategy.tex}
+\import{\sectiondir}{c3m1b_setting_up_your_goal.tex}
+\import{\sectiondir}{c3m1c_comparing_to_human_level_performance.tex}
+\import{\sectiondir}{c3m2a_error_analysis.tex}
+\import{\sectiondir}{c3m2b_mismatched_training_and_dev_test_data.tex}
+\import{\sectiondir}{c3m2c_learning_from_multiple_tasks.tex}
+\import{\sectiondir}{c3m2d_end_to_end_deep_learning.tex}
+\import{\sectiondir}{c4m1_convolutional_neural_networks.tex}
+\import{\sectiondir}{c4m2a_case_studies.tex}
+\import{\sectiondir}{c4m2b_practical_advice_for_using_convnets.tex}
+\import{\sectiondir}{GANs.tex}
+\import{\sectiondir}{python_examples.tex}
+%\import{\sectiondir}{quiz_questions.tex}
+
+\end{multicols*}
+\end{scriptsize}
+\end{document}

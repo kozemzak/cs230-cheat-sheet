@@ -1,0 +1,13 @@
+\section{Multi-Class Classification}
+
+There is a generalization of logistic regression called softmax regression that is used for multi-class classification. In this case, $C =$ number of classes, the range of classes is $[0, C-1]$, and $N_y = C$. The equations for softmax activation are:
+
+$t = e^{Z^{[l]}}$ where $t \in \mathbb{R}^{c \times m}$
+
+$A^{[l]} = \frac{e^{Z^{[l]}}}{\sum_i^{C-1}t^{(i)}} \leftarrow$ scale to 1 by example
+
+\textbf{Loss and Cost Function}
+
+$L(y, \hat{y}) = - \sum_{j=0}^{C-1} y_j \log(\hat{y}_j)$
+
+$J = \frac{1}{m} \sum_{i=1}^m \mathcal{L}(y, \hat{y})$

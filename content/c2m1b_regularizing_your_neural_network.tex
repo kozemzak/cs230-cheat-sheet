@@ -1,0 +1,58 @@
+\section{Regularizing Your Neural Network}
+
+\subsection{L1 and L2 Cost Function}
+
+\textbf{L1 matrix norm:}
+
+$||W||_1 = \sum_{j=1}^{n_x} |w(j)|$
+
+\textbf{L2 matrix norm (a.k.a. Frobenius norm):}
+
+$||W||_2^2 = W^T W =  \sum_{j=1}^{n_x} w(j)^2$
+
+\textbf{Cost:}
+
+$J(w,b) = \frac{1}{m} \sum_{i=1}^{n} (\mathcal{L}(\hat{y}^{(i)},y^{(i)})) + \frac{\lambda}{2m} \sum_{l=1}^{L} ||W^{[l]}||_2^2$
+
+Then $dW^{[l]} = \text{ (from backprop) } + \frac{\lambda}{m} W^{[l]}$. Substitute this into the update rule and we get $W^{[l]} := (1 - \frac{\alpha \lambda}{m}) W^{[l]} - \alpha \text{ (from backprop)}$. The new term $(1 - \frac{\alpha \lambda}{m})$ causes the weight to decay in proportion to its size.
+
+\subsection{Why Regularization Reduces Overfitting}
+
+\begin{itemize}[wide, labelwidth=!, labelindent=0pt]
+\itemsep0em 
+    \item If $\lambda$ is too large, $W$'s will be close to zero which will use the linear part of the tanh activation function. We will go from non-linear to roughly linear activation which will make the NN simpler (behave closer to logistic regression).
+    \item If $\lambda$ good, it will just reduce some weights that make the neural network overfit by making some of the tanh activations roughly linear. \vspace*{-\baselineskip}
+\end{itemize}
+
+\subsection{Dropout Regularization}
+
+\textbf{Why Dropout Works:} Dropout randomly eliminates units and their connections on each iteration. It's as if on every iteration you're working with a smaller NN, and so using a smaller NN seems like it should have a regularizing effect. Prevents weights from relying too heavily on any single feature. Do not use dropout at test time.
+
+\textbf{Inverted Dropout:} Maintains the expected value of $A^{[l]}$.
+
+In forward propagation, perform each layer after computing $A$ and include $D$ in cache:
+\vspace{-1.5mm}
+\begin{lstlisting}[language=Python]
+D1 = np.random.rand(A1.shape[0], A1.shape[1]) < keep_prob
+A1 = A1 * D1  
+A1 / keep_prob
+\end{lstlisting}
+\vspace{-1.5mm}
+In backward propagation, immediately after computing $dA$:
+\vspace{-1.5mm}
+\begin{lstlisting}[language=Python]
+dA2 = dA2 * D2
+dA2 = dA2 / keep_prob 
+\end{lstlisting}
+
+\subsection{Other Regularization Methods:}
+
+\begin{itemize}[wide, labelwidth=!, labelindent=0pt]
+\itemsep0em 
+    \item Data Augmentation: Transform data in a way that makes sense for that data set. Could rotate, crop, reflect, alter perspective, etc. Classic example of what not to do is rotating 6 or 9 when trying to do number recognition.
+    \item Early Stopping: Plot train and dev set errors over iterations. Stop training when the dev set error starts to increase as the train error continues to decrease. \vspace*{-\baselineskip}
+\end{itemize}
+
+
+
+

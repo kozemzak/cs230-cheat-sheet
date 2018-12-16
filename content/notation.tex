@@ -1,0 +1,33 @@
+\section{Notation}
+
+superscript $(i)$ denotes the $i^{th}$ example
+
+superscript $[l]$ denotes the $l^{th}$ layer
+
+$m = \text{number of examples in the dataset}$
+
+$n_x = \text{input size}$
+
+$n_y = \text{output size/number of classes}$
+
+$n^{[l]} = \text{number of units in the } l^{th} \text{ layer}$
+
+$L = \text{number of layers in the network, hidden and output}$
+
+$x^{(i)} \in \mathbb{R}^{n_x} = i^{th} \text{ example represented as a column vector}$
+
+$X \in \mathbb{R}^{n_x \times m} = \text{input matrix}$
+
+$y^{(i)} \in \mathbb{R}^{n_y} = \text{output label for the } i^{th} \text{ example}$
+
+$Y \in \mathbb{R}^{n_y \times m} = \text{label matrix}$
+
+$Z^{[l]} \in \mathbb{R}^{n^{[l]} \times m} = \text{linear bits of layer } l $
+
+$A^{[l]} \in \mathbb{R}^{n^{[l]} \times m} = \text{activations of layer } l $
+
+$W^{[l]} \in \mathbb{R}^{n^{[l]} \times n^{[l-1]}} = \text{weight matrix for layer } l $
+
+$b^{[l]} \in \mathbb{R}^{n^{[l]} \times 1} = \text{bias vector for layer } l $
+
+$\hat{y} = a^{[L]} \in \mathbb{R}^{n_y} \text{predicted output vector}$

@@ -1,0 +1,27 @@
+\section{Setting Up Your Optimization Problem}
+
+\subsection{Normalizing Inputs}
+
+Calculate mean and variance of train data, then apply $\frac{x - \mu}{\sigma ^2}$ transformation  to train, dev, and test data sets.
+
+$\mu = \frac{1}{m} \sum x^{(i)}$
+
+$\sigma ^2 (z) = \frac{1}{m} \sum (z^{(i)} - \mu)^2$
+
+Normalize inputs because we want our parameter search space to be as symmetric as possible. If we don't normalize, we could get a shallow cost function, leading to smaller gradients and slower learning.
+
+\subsection{Vanishing and Exploding Gradients}
+
+When gradients are too small or too large, activations (and gradients) will be decreased/increased exponentially as a function of number of layers. If $W > I$ (identity matrix), the activation and gradients will explode. If $W < I$, the activation and gradients will vanish. We need to be careful about how we initialize our weights.
+
+\subsection{Weight Initialization}
+
+\textbf{Xavier Initialization:} Use with tanh activation. Multiply random $[0,1]$ weights for layer $l$ by $\sqrt{\frac{1}{n^{[l-1]}}}$.
+
+\textbf{He Initialization:} Use with ReLU activation. Multiply random $[0,1]$ weights for layer $l$ by $\sqrt{\frac{2}{n^{[l-1]}}}$.
+
+\subsection{Gradient Approximation and Checking}
+
+Can be useful to numerically approximate gradients using $\frac{f(\theta + \epsilon) - f(\theta - \epsilon)}{2 \epsilon}$ to ensure that algorithm is working as expected while debugging. Don't use during training. Doesn't work with dropout.
+
+To check gradients, reshape $W^{[1]}, b^{[1]}, \dots , W^{[L]}, b^{[L]}$ into one long vector $\theta$. Approximate gradient using $f(\theta) = J(\theta)$. Subtract $\epsilon = 10^{-7}$ from each parameter. Then check $\frac{||d \theta _{approx} - d \theta||_2}{||d \theta _{approx}||_2 + ||d \theta||_2}$. If result is $\approx 10^{-7}$ that's great, should be worried if $\approx 10^{-7}$.

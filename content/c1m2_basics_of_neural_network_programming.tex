@@ -1,0 +1,56 @@
+\section{Basics of Neural Network Programming}
+
+\subsection{Logistic Regression for One Example}
+
+\textbf{Forward Propagation:}
+
+$z^{(i)} = w^T x^{(i)} + b $
+
+$\hat{y}^{(i)} = a^{(i)} = \sigma(z^{(i)}) = \frac{1}{1 + e^{-(w^T x + b)}}$
+
+\textbf{Cross Entropy Loss:}
+
+$\mathcal{L}(a^{(i)}, y^{(i)}) =  - y^{(i)}  \log(a^{(i)}) - (1-y^{(i)} )  \log(1-a^{(i)})$
+
+\textbf{Cost:} Computed by summing over all training examples:
+
+$J(w, b) = \frac{1}{m} \sum_{i=1}^m \mathcal{L}(a^{(i)}, y^{(i)})$
+
+\textbf{Backward Propagation:}
+
+$\frac{\partial J}{\partial w} = \frac{1}{m} \sum_{i=1}^m x^{(i)} (a^{(i)}-y^{(i)})$
+
+$\frac{\partial J}{\partial b} = \frac{1}{m} \sum_{i=1}^m (a^{(i)}-y^{(i)})$
+
+\subsection{Logistic Regression Vectorized}
+
+\textbf{Forward Propagation:}
+
+$Z = w^T X + b$
+
+$\hat{Y} = A = \sigma(Z) = \sigma(w^T X + b)$
+
+$\mathcal{L}(A, Y) =  - Y * \log(A) - (1 - Y) * \log(1 - A)$
+
+\textbf{Cost:} Computed by summing over all training examples:
+
+$J(w, b) = \frac{1}{m} \sum \mathcal{L}(A, Y)$
+
+$J(w, b) = - \frac{1}{m} \sum (Y * \log(A) + (1 - Y) * \log(1 - A))$
+
+\textbf{Backward Propagation:}
+
+$\frac{\partial J}{\partial w} = \frac{1}{m} \sum X (A - Y)^T$
+
+$\frac{\partial J}{\partial b} = \frac{1}{m} \sum (A - Y)$
+
+\subsection{Gradient Descent} 
+
+Want to find (w, b) that minimize J(w, b), which is a convex function. Gradient descent goes the steepest direction downwards.
+
+$w := w - \alpha \frac{\partial J}{\partial w}$ 
+
+$b := b - \alpha \frac{\partial J}{\partial b}$
+
+\subsection{Cross Entropy Loss Function}
+If $y=1$, then $p(y|x) = \hat{y}$. If $y = 0$, then $p(y|x) = 1 - \hat{y}$. Therefore, $p(y|x) = \hat{y}^y (1-\hat{y}^{1-y})$. Take the log likelihood: $\log p(y|x) = \log (\hat{y}^y (1-\hat{y}^{1-y})) = y \log \hat{y} + (1-y) \log (1 - \hat{y}) = - \mathcal{L}(\hat{y}, y)$. We want to minimize the loss, so we maximize the log likelihood estimation.

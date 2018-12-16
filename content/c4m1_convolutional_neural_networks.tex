@@ -1,0 +1,48 @@
+\section{Convolutional Neural Networks}
+
+\begin{itemize}[wide, labelwidth=!, labelindent=0pt]
+\itemsep0em 
+    \item Parameter sharing: A feature detector (such as a vertical edge detector) that’s useful in one part of the image is probably useful in another part of the image.
+    \item Sparsity of connections: In each layer, each output value depends only on a small number of inputs. \vspace*{-\baselineskip}
+\end{itemize}
+
+\textbf{Padding:} Can be valid or same. Valid means no padding. Same means output will have same $n$ as input. To accomplish this, we choose $p = \frac{f-1}{2}$.
+
+\textbf{Dimensions:}
+
+$f^{[l]} = $ filter size
+
+$p^{[l]} = $ padding
+
+$s^{[l]} = $ stride
+
+$n_C^{[l]} = $ number of filters
+
+Each filter is: $f^{[l]} \times f^{[l]} \times n_C^{[l-1]}$
+
+Activations are: $a^{[l]} = n_H^{[l]} \times n_W^{[l]} \times n_C^{[l]}$
+
+or: $A^{[l]} = m \times n_H^{[l]} \times n_W^{[l]} \times n_C^{[l]}$
+
+Weights are: $f^{[l]} \times f^{[l]} \times n_C^{[l-1]} \times n_C^{[l]}$
+
+Biases are: $n_C^{[l]}$
+
+Input is: $n_H^{[l-1]} \times n_W^{[l-1]} \times n_C^{[l-1]}$
+
+Output is: $n_H^{[l]} \times n_W^{[l]} \times n_C^{[l]}$
+
+$n_H^{[l]} = \lfloor \frac{n_H^{[l-1]} + 2p^{[l]} - f^{[l]}}{s^{[l]}} + 1 \rfloor$
+
+num_params $= (f^{[l]} * f^{[l]} * n_C^{[l-1]} + 1) * n_C^{[l]}$
+
+\textbf{1 $\times$ 1 Convolutions: } Allow you to shrink or expand the number of channels in an image (like pooling does for $n_W$ and $n_H$). Takes element-wise product of a pixel's channel. Sometimes called a network in network. Can be used as a bottleneck to reduce number of multiplication operations.
+
+\textbf{Inception Network: } Allows you to apply many different types of filters instead of trying to choose between them. Must use same padding for convolutions.
+
+\textbf{Resideual Networks:}
+
+Skips over layers and adds in activation from first layer in block to $z$ of last layer in block. Adding layers to a ResNet doesn't hurt because it is easy for residual blocks to learn the identity function, and it still gives them the chance to learn a more complex function if it will boost performance. Assumes $a^{[l+2]}$ and $a^{[l]}$ have the same dimension, so it's common to use same padding on convolutions, but if not you can add $W_s$ to change the shape of $a^{[l]}$. Here $a^{[l+2]} = g(z^{[l+2]} + a^{[l]})$.
+
+
+

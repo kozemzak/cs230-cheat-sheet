@@ -1,0 +1,20 @@
+\section{Setting Up Your Goal}
+
+\subsection{Single Number Evaluation Metric}
+
+\begin{itemize}[wide, labelwidth=!, labelindent=0pt]
+\itemsep0em 
+    \item Its better and faster to set a single number evaluation metric for your project before you start it. 
+    \item Precision = TP / (TP + FP) and recall = TP / (TP + FN), but better to combine these metrics in to F1 score = 2 / [(1/P) + (1/R)].
+    \item Its hard sometimes to get a single number evaluation metric. So we can solve that by choosing a single optimizing metric and decide that other metrics are satisficing.
+    \item If doing well on your metric and not doing well in your application, change your metric and/or dev and test sets. \vspace*{-\baselineskip}
+\end{itemize}
+
+\subsection{Train, Dev, and Test Set Distributions}
+
+Dev and test sets have to come from the same distribution. Choose dev set and test set to reflect data you expect to get in the future and consider important to do well on. Setting up the dev set as well as the validation metric is really defining the target you want to aim at.
+
+
+
+
+

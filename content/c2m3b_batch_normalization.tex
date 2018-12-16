@@ -1,0 +1,22 @@
+\section{Batch Normalization}
+
+Batch normalization can speed up learning, as previously discussed. It is usually applied to mini-batches at every layer of the neural network. Once we have normalized $Z^{[l]}$, we can transform the data to a new distribution defined by the learnable parameters $\gamma$ and $\beta$: $\Tilde{Z}^{[l]} = \gamma Z_\text{norm}^{[l]} + \beta^{[l]}$. There are some changes to propagation.
+
+\textbf{Forward Propagation:}
+
+$Z^{[l]} =  W^{[l]} A^{[l-1]} \textcolor{red}{+ b^{[l]}} \leftarrow$  drop $b^{[l]}$ because replaced by $\beta^{[l]}$
+
+Calculate $Z_\text{norm}^{[l]}$
+
+$\Tilde{Z}^{[l]} = \gamma Z_\text{norm}^{[l]} + \beta^{[l]}$
+
+$A^{[l]} = g^{[l]}(\Tilde{Z}^{[l]})$
+
+\textbf{Backward Propagation:}
+
+Only update parameters $W^{[l]}$, $\gamma^{[l]}$, and $\beta^{[l]}$.
+
+\textbf{Regularization Effect of Batch Norm:} Each mini batch is scaled by the mean/variance computed of that mini-batch. This adds some noise to the values $Z^{[l]}$ within that mini-batch. This has a slight regularization effect. Using bigger size of the mini-batch you are reducing noise and therefore regularization effect. Don't rely on batch normalization as a form of regularization. It's intended for normalization of hidden units, activations and therefore speeding up learning.
+
+\textbf{Batch Norm at Test Time:} When we train a NN with Batch normalization, we compute the mean and the variance of the mini-batch. In testing we might need to process examples one at a time. The mean and the variance of one example won't make sense. We have to compute an estimated value of mean and variance to use it in testing time. We can use the weighted average across the mini-batches. We will use the estimated values of the mean and variance to test.
+

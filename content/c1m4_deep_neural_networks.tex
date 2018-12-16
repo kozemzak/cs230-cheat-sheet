@@ -1,0 +1,33 @@
+\section{Deep Neural Networks}
+
+\subsection{Why Deep Representations?}
+
+There are functions you can compute with a “small” L-layer deep neural network that shallower networks require exponentially more hidden units to compute. If we have a network with $n$ inputs and $n$, $\frac{n}{2}$, $\frac{n}{4}$, $\dots$, $1$ units, the total depth is $O (\log n)$. To be able to compute the same types of functions we would need $O(2^n)$ units in a single layer neural network.
+
+\subsection{Forward and Backward Propagation}
+
+\textbf{Forward Propagation:}
+
+$Z^{[l]} =  W^{[l]} A^{[l-1]} + b^{[l]}$
+
+$A^{[l]} = g^{[l]}(Z^{[l]})$
+
+\textbf{Backward Propagation:}
+
+$dZ^{[l]} = dA^{[l]} * g'^{[l]} (Z^{[l]})$
+
+$dW^{[l]} = \frac{1}{m} dZ^{[l]} A^{[l-1]^T}$
+
+$db^{[l]} = \frac{1}{m} \sum dZ^{[l]}$
+
+$dA^{[l-1]} = W^{[l]^T} dZ^{[l]}$
+
+\subsection{Parameters versus Hyperparameters}
+
+\begin{itemize}[wide, labelwidth=!, labelindent=0pt]
+\itemsep0em 
+    \item Hyperparameters control the algorithm and therefore determine the value of the parameters.
+    \item Parameters: weights, biases
+    \item Hyperparameters: number of iterations, number of hidden layers, number of units in each layer, activation functions, minibatch size, regularization, $\dots$ \vspace*{-\baselineskip}
+\end{itemize}
+

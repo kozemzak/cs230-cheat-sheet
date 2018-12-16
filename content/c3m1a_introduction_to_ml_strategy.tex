@@ -1,0 +1,13 @@
+\section{Introduction to ML Strategy}
+
+\subsection{Orthogonalization}
+
+In orthogonalization, you have some controls, but each control does a specific task and doesn't affect other controls. For a supervised learning system to do well, we want to tune the knobs of our system to improve each of these accuracies one at a time:
+
+\begin{itemize}[wide, labelwidth=!, labelindent=0pt]
+\itemsep0em 
+    \item Fit train set well on cost function (near human level performance if possible).
+    \item Fit dev set well on cost function.
+    \item Fit test set well on cost function.
+    \item erforms well in real world. \vspace*{-\baselineskip}
+\end{itemize}
