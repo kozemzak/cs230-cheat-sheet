@@ -2,6 +2,8 @@
 
 This cheat sheet was made for the Autumn 2018 Deep Learning midterm at Stanford University based on the Coursera Deep Learning specialization, but it also includes some content from in-person lectures. It was created using LaTeX/Overleaf.
 
+If you do not want to modify the existing LaTeX, a PDF version of the cheat sheet is available for download [here](https://github.com/kozemzak/cs230_cheat_sheet/blob/master/midterm_cheat_sheet.pdf).
+
 ## Organization
 
 The content directory is organized by course number and module, with the names matching those of the Coursera units. Some addition components are included. For example, GANs were covered in an in-class lecture. I ran out of time before the exam, so some sections are probably not complete and I do not plan on adding to them at this point in time. 
