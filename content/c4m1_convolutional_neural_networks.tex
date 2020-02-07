@@ -34,7 +34,7 @@ Output is: $n_H^{[l]} \times n_W^{[l]} \times n_C^{[l]}$
 
 $n_H^{[l]} = \lfloor \frac{n_H^{[l-1]} + 2p^{[l]} - f^{[l]}}{s^{[l]}} + 1 \rfloor$
 
-num_params $= (f^{[l]} * f^{[l]} * n_C^{[l-1]} + 1) * n_C^{[l]}$
+num\_params $= (f^{[l]} * f^{[l]} * n_C^{[l-1]} + 1) * n_C^{[l]}$
 
 \textbf{1 $\times$ 1 Convolutions: } Allow you to shrink or expand the number of channels in an image (like pooling does for $n_W$ and $n_H$). Takes element-wise product of a pixel's channel. Sometimes called a network in network. Can be used as a bottleneck to reduce number of multiplication operations.
 
